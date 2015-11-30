@@ -22,23 +22,29 @@ twitter = Twitter(auth=oauth)
 
 ###code lines 25-41 are my current attempt and putting the tweets, time, and location for each hashtag search in nested dictionaries. Not sure if it works properly.
 ##There may be a better way to do this. open to ideas and am going to ask Yu-Jen
-cancerlist = ['#adsm','#ancsm','#bcsm','#ayacsm','#blcsm','#btsm','#crcsm','#esocsm','#gyncsm','#hncsm','#hpbcsm','#kcsm','#lcsm','#leusm','#lymsm','#melsm','#mmsm','#pancsm','#pcsm','#pedcsm','#scmsm','#stcsm','#thmsm','#thycsm','#tscsm']
-cancerdict = {}
-cancerdictstatus = {}
-tweet = {}
-timetweeted = {}
-location = {}
+# cancerlist = ['#adsm','#ancsm','#bcsm','#ayacsm','#blcsm','#btsm','#crcsm','#esocsm','#gyncsm','#hncsm','#hpbcsm','#kcsm','#lcsm','#leusm','#lymsm','#melsm','#mmsm','#pancsm','#pcsm','#pedcsm','#scmsm','#stcsm','#thmsm','#thycsm','#tscsm']
+# cancerdict = {}
+# cancerdictstatus = {}
+# tweet = {}
+# timetweeted = {}
+# location = {}
 
-def cancersearch():
-    for i in cancerlist:
-        cancerdict[i] = twitter.search.tweets(q=i)
-        cancerdictstatus[i] = cancerdict[i]['statuses']
-        for x in cancerdictstatus[i]:
-            tweet[i] = x['text']
-            timetweeted[i] = x['created_at']
-            location[i] = x['geo']
+# def cancersearch():
+#     for i in cancerlist:
+#         cancerdict[i] = twitter.search.tweets(q=i)
+#         cancerdictstatus[i] = cancerdict[i]['statuses']
+#         for x in cancerdictstatus[i]:
+#             tweet[i] = x['text']
+#             timetweeted[i] = x['created_at']
+#             location[i] = x['geo']
 
-cancersearch()
+# cancersearch()
+
+adsmdict = twitter.search.tweets(q='#pcsm', count=1)
+status = adsmdict['statuses']
+username = status[0]['user']['screen_name']
+tweet = status[0]['text']
+time = status[0]['created_at']
 
 ###code below is what I used to make sure I was getting the tweet
 # def adcsm():
