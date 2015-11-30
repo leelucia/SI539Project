@@ -45,6 +45,7 @@ status = adsmdict['statuses']
 username = status[0]['user']['screen_name']
 tweet = status[0]['text']
 time = status[0]['created_at']
+location = status[0]['user']['location']
 
 ###code below is what I used to make sure I was getting the tweet
 # def adcsm():
