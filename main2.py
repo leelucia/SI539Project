@@ -27,20 +27,18 @@ blcsmusername = blcsmstatus[0]['user']['screen_name']
 blcsmtweet = blcsmstatus[0]['text']
 blcsmlocation =  blcsmstatus[0]['user']['location']
 blcsmtime = blcsmstatus[0]['created_at']
-print blcsmdict
+
 
 #bcsm breast cancer
-bcsmdict = twitter.search.tweets(q='#bcsm')
+bcsmdict = twitter.search.tweets(q='#bcsm', count = 100)
 bcsmstatus = bcsmdict['statuses']
 bcsmusername = bcsmstatus[0]['user']['screen_name']
 bcsmtweet = bcsmstatus[0]['text']
 bcsmlocation =  bcsmstatus[0]['user']['location']
 bcsmtime = bcsmstatus[0]['created_at']
-print type(blcsmstatus)
-print len(bcsmstatus)
 
 #pcsm prostate cancer
-pcsmdict = twitter.search.tweets(q='#pcsm')
+pcsmdict = twitter.search.tweets(q='#pcsm', count = 100)
 pcsmstatus = pcsmdict['statuses']
 pcsmusername = pcsmstatus[0]['user']['screen_name']
 pcsmtweet = pcsmstatus[0]['text']
@@ -48,7 +46,7 @@ pcsmlocation =  pcsmstatus[0]['user']['location']
 pcsmtime = pcsmstatus[0]['created_at']
 
 #lcsm lung cancer
-lcsmdict = twitter.search.tweets(q='#lcsm')
+lcsmdict = twitter.search.tweets(q='#lcsm', count = 100)
 lcsmstatus = lcsmdict['statuses']
 lcsmusername = lcsmstatus[0]['user']['screen_name']
 lcsmtweet = lcsmstatus[0]['text']
