@@ -1,3 +1,17 @@
+ul.nav > li > a:hover  {
+	border-style: dashed;
+  border-width: thin;
+  border-color: #A4DADB;
+
+}
+
+
+.active {
+	background-color: #A4DADB;
+	color: white;
+	border-style: none;
+}
+
 .container-fluid {
   padding-left: 30px;
   padding-right: 30px;
@@ -16,7 +30,7 @@ h3 {
 }
 
 .jumbotron {
-  min-height: 800px;
+  min-height: 200px;
 }
 
 .middle {
@@ -39,6 +53,7 @@ h3 {
 }*/
 
 
+
 #vizNav {
   max-width: 30%;
   margin-bottom: 20px;
@@ -48,13 +63,8 @@ a {
   color: gray;
 }
 
-ul.nav > li > a:hover {
-	background-color: #A4DADB;
-	color: white;
-	border-style: none;
-}
 
-#vizdata {
+.vizdata {
   position: absolute;
   margin: -10px;
   padding: 10px;
