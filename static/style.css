@@ -5,6 +5,9 @@ ul.nav > li > a:hover  {
 
 }
 
+.inactive {
+  background-color: white;
+}
 
 .active {
 	background-color: #A4DADB;
