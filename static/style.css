@@ -2,15 +2,26 @@ ul.nav > li > a:hover  {
 	border-style: dashed;
   border-width: thin;
   border-color: #A4DADB;
-
 }
 
+
+.navbar-default {
+    background-color: white;
+    border-color: #E7E7E7;
+		color: white;
+		margin-bottom: 0px;
+}
+
+#rightDiv {
+	float: right;
+}
 .inactive {
   background-color: white;
 }
 
 .active {
-	background-color: #A4DADB;
+	/*background-color: #A4DADB;*/
+	background-color: #f1f2f4;
 	color: white;
 	border-style: none;
 }
@@ -28,12 +39,29 @@ ul.nav > li > a:hover  {
 h3 {
   color: #gray;
 }
-.navbar.navbar-default {
+/*.navbar.navbar-default {
   margin-bottom: 0px;
-}
+	color: white;
+}*/
+
+/*.jumbotron {
+  min-height: 300px;
+	color: white;
+	background-color: #A4DADB;
+}*/
 
 .jumbotron {
-  min-height: 200px;
+  min-height: 350px;
+	/*color: #01506B;*/
+	color: black;
+	background: transparent;
+	padding-top: 5px;
+
+}
+
+#lowerJumbo {
+	min-height: 100px;
+	background: transparent;
 }
 
 .middle {
@@ -42,6 +70,7 @@ h3 {
 
 #sidebar {
     margin-top: 25px;
+		position: fixed;
 }
 
 /*.viz {
@@ -73,7 +102,8 @@ a {
   padding: 10px;
   border-size: 2px;
   border-style: solid;
-  border-color: #A4DADB;
+  /*border-color: #A4DADB;*/
+	border-color: #f1f2f4;
   min-height: 800px;
   min-width: 100%;
 }

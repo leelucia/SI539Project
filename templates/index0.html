@@ -19,7 +19,6 @@ function resetViz() {
   document.getElementById('listblcsm').className="inactive";
   document.getElementById('listpcsm').className="inactive";
   document.getElementById('listlcsm').className="inactive";
-  document.getElementById('listall').className="inactive";
   document.getElementById('weekButton').className="inactive";
   document.getElementById('donutButton').className="inactive";
 }
@@ -53,11 +52,6 @@ function selectCancer(v1) {
   if (v1 == "lcsm") {
     document.getElementById('listlcsm').className="active";
     document.getElementById('tweets').innerHTML=document.getElementById('lcsmTweets').innerHTML;
-  }
-
-  if (v1 == "allHashtags") {
-      document.getElementById('listall').className="active";
-      document.getElementById('tweets').innerHTML=document.getElementById('allTweets').innerHTML;
   }
 }
 
@@ -98,14 +92,6 @@ function displayViz(v2) {
     document.getElementById('vizchange').innerHTML=document.getElementById('pcsmDiv2').innerHTML;
     }
   }
-  else if (whichCancer == "allHashtags") {
-    if (v2 == "week") {
-    document.getElementById('vizchange').innerHTML=document.getElementById('allHashtagsDiv1').innerHTML;
-    }
-    else if (v2 == "donut") {
-    document.getElementById('vizchange').innerHTML=document.getElementById('allHashtagsDiv2').innerHTML;
-    }
-  }
   else
   {    document.getElementById('vizchange').innerHTML=document.getElementById('noHashtag').innerHTML; }
 
@@ -122,7 +108,7 @@ function displayViz(v2) {
     <div class="container-fluid">
       <div>
         <ul class="nav navbar-nav pull-right">
-          <li><a href="#"">Home</a></li>
+          <li><a href="#">Home</a></li>
           <li><a href="#">About</a></li>
         </ul>
       </div>
@@ -131,7 +117,7 @@ function displayViz(v2) {
 
 
 <!--jumbotron-->
-<div class="jumbotron parallax-window" data-parallax="scroll" data-image-src="../static/img/sky.jpg">
+<div class="jumbotron parallax-window" data-parallax="scroll" data-image-src="../static/img/sky.jpg"">
   <div class="container-fluid">
   <h1>Cancer Tweets</h1>
   <p>Tweets over the past 24 hours</p>
@@ -153,18 +139,16 @@ function displayViz(v2) {
           <li id=listpcsm><a onclick="selectCancer('pcsm')"><i class="glyphicon glyphicon-tree-deciduous"></i> Prostate Cancer</a></li>
           <li id=listlcsm><a onclick="selectCancer('lcsm')"><i class="glyphicon glyphicon-leaf"></i> Lung Cancer</a></li>
           <li id=listblcsm><a onclick="selectCancer('blcsm')"><i class="glyphicon glyphicon-tint"></i> Bladder Cancer</a></li>
-          <li id=listall><a onclick="selectCancer('allHashtags')"><i class="glyphicon glyphicon-list-alt"></i> All</a></li>
           <!-- <li><a href="#"><i class="glyphicon glyphicon-refresh"></i> Refresh</a></li> -->
       </ul>
 
 
       <!-- tiny only nav-->
     <ul class="nav visible-xs" id="xs-menu">
-          <li id=listbcsm class="text-center"><a onclick="selectCancer('bcsm')"><i class="glyphicon glyphicon-heart"></i></a></li>
-          <li id=listbcsm class="text-center"><a onclick="selectCancer('pcsm')"><i class="glyphicon glyphicon-tree-deciduous"></i></a></li>
-          <li id=listbcsm class="text-center"><a onclick="selectCancer('lcsm')"><i class="glyphicon glyphicon-leaf"></i></a></li>
-          <li id=listbcsm class="text-center"><a onclick="selectCancer('blcsm')"><i class="glyphicon glyphicon-tint"></i></a></li>
-          <li id=listbcsm class="text-center"><a onclick="selectCancer('allHashtags')"><i class="glyphicon glyphicon-list-alt"></i></a></li>
+          <li><a href="#featured" class="text-center"><i class="glyphicon glyphicon-heart"></i></a></li>
+          <li><a href="#stories" class="text-center"><i class="glyphicon glyphicon-tree-deciduous"></i></a></li>
+          <li><a href="#" class="text-center"><i class="glyphicon glyphicon-leaf"></i></a></li>
+          <li><a href="#" class="text-center"><i class="glyphicon glyphicon-tint"></i></a></li>
       </ul>
 
   </div>
@@ -220,17 +204,6 @@ function displayViz(v2) {
       <p>pcsm2</p>
     </div>
 
-    <div id="noHashtag" style="visibility:hidden;">
-      <p>Please select a hashtag on the left.</p>
-    </div>
-
-    <div id="allHashtagsDiv1" style="visibility:hidden;">
-      <p>all hashtags 1 viz</p>
-    </div>
-
-    <div id="allHashtagsDiv2" style="visibility:hidden;">
-      <p>all hashtags 2 viz</p>
-    </div>
 </div>
 
 </div>
@@ -288,18 +261,11 @@ function displayViz(v2) {
   <p>Please select a hashtag on the left.</p>
 </div>
 
-<div id="allTweets" style="visibility:hidden;">
-  <p>All tweets</p>
-</div>
 
+<!-- tweets box -->
 </section>
+<!-- tweets section -->
 
-
-<div class="jumbotron parallax-window" id="lowerJumbo" data-parallax="scroll" data-image-src="../static/img/sky2.jpg">
-  <div class="container-fluid">
-  <p>Resources</p>
-  </div>
-</div>
 
 
 
