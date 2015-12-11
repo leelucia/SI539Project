@@ -1,0 +1,280 @@
+/* Joseph Godlew portfolio */
+
+html {
+	position: relative;
+	min-height: 100%;
+}
+
+body {
+/*	margin: 0%;*/
+	padding: 0%;
+	background-color: rgba(240, 240, 240, 1);
+	font-size: 100%;
+	min-width: 200px;
+	height: 100%;
+	width: 100%;
+	margin-bottom: 2em; /* Same height as footer */
+
+}
+
+
+/* Header */
+header {
+	width: 100%;
+	text-align: center;
+	padding: 0;
+	margin-bottom: 2em;
+
+	
+}
+
+#header_container {
+	background-color: #7BCCE3;
+	min-height: 5em;
+	padding-top: 0.25em;
+	padding-bottom: 0.25em;
+	background-position: right top;
+
+}
+
+#header_container h1 {
+	text-align: center;
+	display: inline;
+	color: #4a4a4a;
+}
+
+#mobileNav_trigger {
+	display: ;
+	float: left;
+	font-size: large;
+	/*padding-top: 0.25em;*/
+	padding-left: 0em;
+}
+
+.mobileNav_ol ol {
+	list-style: none;
+}
+
+.mobileNav_drawer {
+	margin-top: 0em;
+}
+
+.mobileNav_drawer ul {
+
+}
+
+.mobileNav_drawer li {
+	font-size: 2em;
+}
+
+.collapse in {
+	margin-top: -4em;
+	padding-top: -4em;
+}
+
+.navbar-toggle {
+	margin-top: 0em;
+	margin-right: 0em;
+	margin-bottom: 0em;
+}
+
+.navbar-nav {
+	margin: 0em;
+}
+
+ul.nav.navbar-nav.navbar-left {
+	margin-top: 0em;
+}
+
+ul.nav.navbar-nav.navbar-left li {
+	background-color: #7BCCE3; /* navdrawer li's bg color */
+	max-width: 100%;
+}
+
+ul.nav.navbar-nav.navbar-left li a {
+	color: white;
+}
+
+.nav li a:focus, .nav li a:hover {
+	background-color: #A5D9E8;
+}
+
+.glyphicon {
+	display: inline;
+}
+
+a {
+	color: #000000
+}
+
+a.active {
+	text-decoration: underline;
+}
+
+a.active:hover {
+	text-decoration: underline;
+}
+
+/* Body */
+.container {  
+	padding-bottom: 2em;
+	overflow: auto;
+}
+
+.container_div {
+	border: gray solid 0.25em;
+	background-color: white;
+	margin-bottom: 2em;
+	text-align: center;
+}
+
+.container_div h2 {
+	text-align: center;
+	display: block;
+}
+
+.container_div p {
+	font-size: 1.25em;
+}
+
+#body_container { 
+	min-height: 100%;
+}
+
+h2 {
+	margin: 0.3em;
+}
+
+#navbar_big {
+	display: none;
+}
+
+.body_img {
+	padding: 0.25em;
+	margin: 1em;
+	border: solid gray 1px;
+	max-width: 10em;
+	max-height: 10em;
+}
+
+.alert {
+	margin-top: 2em;
+}
+
+.form_field {
+	display: block;
+	margin-top: 1em;
+	margin-bottom: 1em;
+}
+
+#donutdiv1 {
+	width: 50%;
+	margin: 0 auto;
+}
+
+#donutdiv2 {
+	width: 50%;
+	margin: 0 auto;
+}
+
+.feed_div p {
+	font-size: 1em;
+}
+
+/* Footer */
+footer {
+	background-color: #7BCCE3;
+	/*border-bottom: #183a89 0.25em solid;*/
+	margin-top: 2em;
+	padding-top: 0.75em;
+	text-align: center;
+	position: absolute;
+	bottom: 0;
+	width: 100%;
+	height: 3em;
+	color: white;
+	
+}
+
+footer a {
+	color: white;
+}
+
+footer a:hover {
+	color: #cecaca;
+}
+
+#footer_copyright {
+	color: white;
+	display: inline;
+	float: right;
+}
+
+
+
+/* medium */
+@media only screen and (min-width: 768px) {
+	
+.navbar-header {
+	float: none;
+}
+
+#header_container {
+	min-height: 15em;
+	padding-top: 2em;
+}
+
+#header_container h1 {
+	text-align: center;
+	display: inline;
+	font-size: 5em;
+	color: #4a4a4a;
+}
+
+#navbar_big {
+	display: block;
+	margin-top: 4em;
+	margin-bottom: 1em;
+}
+
+.mobileNav_drawer {
+	visibility: hidden;
+}
+
+.navbar_big_link {
+	display: inline;
+	text-transform: uppercase;
+	font-size: 1.75em;
+	padding-left: 0.5em;
+	padding-right: 0.5em;
+}
+
+/*.navbar_big_link a.active{
+	text-decoration: underline;
+}*/
+
+} /* Medium close */
+
+
+/* Large */
+@media only screen and (min-width: 992px) {
+
+.container_div {
+	margin-left: 1em;
+	margin-right: 1em;
+}
+
+.container {
+	text-align: center;
+}
+
+.col-md-6 {
+	width: 47%;
+}
+
+.col-md-12 {
+	width: 96%;
+}
+
+} /* Large close */
+

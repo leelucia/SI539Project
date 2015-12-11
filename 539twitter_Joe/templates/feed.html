@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+
+{% block content %}
+	<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 container_div">
+		<h2>Tweet Feeds</h2>
+			<p>Below please find a selection of the most recent tweets grouped by hashtag.  This consists of only the tweet text, as lists built from the Twitter API for tweets and users did not always accurately correspond to each other.  See what is being talked about for each of these hashtags!</p>
+	</div>
+
+	<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 container_div feed_div">
+		<h3>#BCSM Breast Cancer</h3>
+		{% for tweet in bcsm_tweetFeed %}
+			<p>{{ tweet }}</p>
+		{% endfor %}
+	</div>
+
+	<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 container_div feed_div">
+		<h3>#PCSM Prostate Cancer</h3>
+		{% for tweet in pcsm_tweetFeed %}
+			<p>{{ tweet }}</p>
+		{% endfor %}
+	</div>
+
+	<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 container_div feed_div">
+		<h3>#BLCSM Bladder Cancer</h3>
+<!-- 		{% for tweet in blcsm_tweetFeed %}
+		{% for user in blcsm_userFeed %}
+			<p>{{ tweet }} @ {{ user }}</p>
+		{% endfor %}
+		{% endfor %} -->
+		{% for tweet in blcsm_tweetFeed %}
+			<p>{{ tweet }}</p>
+		{% endfor %}
+	</div>
+
+	<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 container_div feed_div">
+		<h3>#LCSM Lung Cancer</h3>
+		{% for tweet in lcsm_tweetFeed %}
+			<p>{{ tweet }}</p>
+		{% endfor %}
+	</div>
+{% endblock %}

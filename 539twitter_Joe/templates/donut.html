@@ -1,0 +1,96 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+	<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 container_div">
+		<h2>Total Tweet Count</h2>
+		<p>The total sum count of all hashtags is displayed below.  This visualization represents the number of times each particular hashtag was tweeted within a certain period of time.  Due to limitations in the Twitter API, we are not able to query against all tweets on Twitter.  We are limited to very defined requests and specifications/quantities.  As such, you will notice that the chart below has equal proportions.  If the Twitter API allowed us to query from the entire Twitter database, we would expect these proprtions to reflect the actual number of tweets containing each hashtag.  The second chart shows sample data as we would expect to see with an open API.</p>
+		<div id="canvas-holder">
+			<h3>Count of all hashtags (real data)</h3>
+			<canvas id="donutdiv1"></canvas>
+		</div>
+	</div>
+
+	<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 container_div">
+			<h3>Count of all hashtags (sample data)</h3>
+			<div id="canvas-holder">
+			<canvas id="donutdiv2"></canvas>
+		</div>
+	</div>
+
+	<script>
+
+		var doughnutData = [
+				{
+					value: {{blcsm_numbtweets}},
+					color:"#F7464A",
+					highlight: "#FF5A5E",
+					label: "#BLCSM"
+				},
+				{
+					value: {{bcsm_numbtweets}},
+					color: "#46BFBD",
+					highlight: "#5AD3D1",
+					label: "#BCSM"
+				},
+				{
+					value: {{pcsm_numbtweets}},
+					color: "#FDB45C",
+					highlight: "#FFC870",
+					label: "#PCSM"
+				},
+				{
+					value: {{lcsm_numbtweets}},
+					color: "#949FB1",
+					highlight: "#A8B3C5",
+					label: "#LCSM"
+				},
+
+			];
+
+			// window.onload = function(){
+			// 	var ctx = document.getElementById("chart-area").getContext("2d");
+			// 	window.myDoughnut = new Chart(ctx).Doughnut(doughnutData, {responsive : true});
+			// };
+
+
+
+				var doughnutData2 = [
+				{
+					value: 255642,
+					color:"#F7464A",
+					highlight: "#FF5A5E",
+					label: "#BLCSMsample"
+				},
+				{
+					value: 432345,
+					color: "#46BFBD",
+					highlight: "#5AD3D1",
+					label: "#BCSMsample"
+				},
+				{
+					value: 107911,
+					color: "#FDB45C",
+					highlight: "#FFC870",
+					label: "#PCSMsample"
+				},
+				{
+					value: 484120,
+					color: "#949FB1",
+					highlight: "#A8B3C5",
+					label: "#LCSM2sample"
+				},
+
+			];
+
+			window.onload = function(){
+				var ctx_donut1 = document.getElementById("donutdiv1").getContext("2d");
+				window.myDoughnut = new Chart(ctx_donut1).Doughnut(doughnutData, {responsive : true});
+				var ctx_donut2 = document.getElementById("donutdiv2").getContext("2d");
+				window.myDoughnut2 = new Chart(ctx_donut2).Doughnut(doughnutData2, {responsive : true});
+			};
+
+	</script>
+	</div>
+
+{% endblock %}

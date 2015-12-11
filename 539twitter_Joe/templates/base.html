@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>{{ title }}</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<meta charset = "UTF-8">
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css"/>
+		<link rel="stylesheet" type="text/css" href="static/style.css"/>
+</head>
+<body>
+<script src="http://code.jquery.com/jquery-1.11.3.min.js"></script>
+<script src="http://code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+<script src="static/chart/Chart.js"></script>
+
+<div id="body_container">
+<header>
+	<!--<div id="header_container" class="navbar-fixed-top navbar-header">-->
+	<div id="header_container" class="navbar-top navbar-header">
+			<div id="mobileNav_trigger">
+				<button class="navbar-toggle" data-toggle="collapse" href="#nav_collapse" aria-expanded="false" aria-controls="nav_collapse"><span class="glyphicon glyphicon-menu-hamburger"></span></button>
+			</div>
+			<h1>Twitter #Cancer 1.0</h1>
+			
+			<div id="navbar_big">
+					<div class="navbar_big_link"><a href="index" {% if name == "index" %}
+              class = "active"
+              {% endif %}>Home</a></div>
+              <div class="navbar_big_link"><a href="donut" {% if name == "donut" %}
+              class = "active"
+              {% endif %}>Counts</a></div>
+					<div class="navbar_big_link"><a href="line" {% if name == "line" %}
+              class = "active"
+              {% endif %}>Over Time</a></div>
+              <div class="navbar_big_link"><a href="feed" {% if name == "feed" %}
+              class = "active"
+              {% endif %}>Feeds</a></div>
+			</div>
+	</div>
+	
+<!--	<div id="mobileNav_drawer">  Mobile Nav links slide down -->
+		<div class="collapse" id="nav_collapse">
+			<div class="mobileNav_drawer">
+				<ul class="nav navbar-nav navbar-left">
+					<li><a href="index" {% if name == "index" %}
+              class = "active"
+              {% endif %}>Home</a></li>
+					<li><a href="donut" {% if name == "donut" %}
+              class = "active"
+              {% endif %}>Counts</a></li>
+              <li><a href="line" {% if name == "line" %}
+              class = "active"
+              {% endif %}>Over Time</a></li>
+              <li><a href="feed" {% if name == "feed" %}
+              class = "active"
+              {% endif %}>Feeds</a></li>
+				</ul>
+			</div>
+		</div>
+<!-- 	</div>Mobile Nav links slide down -->
+</header>
+<div class="container"><!-- Body -->
+
+    {% block content %}
+      Block Content goes here!!!
+    {% endblock %}
+
+</div>
+<footer>
+		<a href="/resources">(c) Twitter #Cancer 1.0 | Resources</a> 
+</footer>
+</div> <!-- #body_container close -->
+</body>
+</html>

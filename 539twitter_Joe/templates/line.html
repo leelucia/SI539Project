@@ -1,0 +1,186 @@
+{% extends "base.html" %}
+
+{% block content %}
+	<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 container_div">
+		<h2>Tweets Over Time</h2>
+		<p>The visualizations below show frequency of tweets over a defined interval of time.  This is useful in examining when certain hashtags are more popular than others, or when hashtags have a sudden spike or decline in useage.  Twitter API limitations prevented us from querying a large number of tweets, which limited results to "recent" tweets only (usually from the current day only).  As such, we chose to look at frequency over a 24 hour period, rather than over the past 30 days or 12 months, as this data actually fluctuates.</p>
+			<div style="width:100%">			
+				<h3><span style="background-color: rgba(220,220,220,0.8);">#BCSM </span> <span style="background-color: rgba(151,187,205,0.8);"> #PCSM </span> <span style="background-color: rgba(161,212,144,0.8);"> #BLCSM </span> <span style="background-color: rgba(242,111,68,0.8);"> #LCSM</span></h3>
+				<canvas id="canvas"></canvas>
+			</div>
+	</div>
+
+	<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 container_div">
+		<div style="width:100%">
+			<h3>#BCSM Breast</h3>
+				<canvas id="canvas2"></canvas>
+		</div>
+	</div>
+
+	<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 container_div">
+		<div style="width:100%">
+		<h3>#PCSM Prostate</h3>
+				<canvas id="canvas3"></canvas>
+		</div>
+	</div>
+
+	<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 container_div">
+		<div style="width:100%">
+		<h3>#BLCSM Bladder</h3>
+				<canvas id="canvas4"></canvas>
+		</div>
+	</div>
+
+	<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 container_div">
+		<div style="width:100%">
+			<h3>#LCSM Lung</h3>
+				<canvas id="canvas5"></canvas>
+		</div>
+	</div>
+
+	<script>
+		var randomScalingFactor = function(){ return Math.round(Math.random()*100)};
+		var lineChartData = {
+			labels : ["12am","1am","2am","3am","4am","5am","6am","7am","8am","9am","10am","11am","12pm","1pm","2pm","3pm","4pm","5pm","6pm","7pm","8pm","9pm","10pm","11pm"],
+			datasets : [
+				{
+					label: "#BCSM Breast",
+					fillColor : "rgba(220,220,220,0.2)",
+					strokeColor : "rgba(220,220,220,1)",
+					pointColor : "rgba(220,220,220,1)",
+					pointStrokeColor : "#fff",
+					pointHighlightFill : "#fff",
+					pointHighlightStroke : "rgba(220,220,220,1)", //Grey
+					data : [{{bcsm_hoursCount_0}},{{bcsm_hoursCount_1}},{{bcsm_hoursCount_2}},{{bcsm_hoursCount_3}},{{bcsm_hoursCount_4}},{{bcsm_hoursCount_5}},{{bcsm_hoursCount_6}},{{bcsm_hoursCount_7}},{{bcsm_hoursCount_8}},{{bcsm_hoursCount_9}},{{bcsm_hoursCount_10}},{{bcsm_hoursCount_11}},{{bcsm_hoursCount_12}},{{bcsm_hoursCount_13}},{{bcsm_hoursCount_14}},{{bcsm_hoursCount_15}},{{bcsm_hoursCount_16}},{{bcsm_hoursCount_17}},{{bcsm_hoursCount_18}},{{bcsm_hoursCount_19}},{{bcsm_hoursCount_20}},{{bcsm_hoursCount_21}},{{bcsm_hoursCount_22}},{{bcsm_hoursCount_23}}]
+				},
+				{
+					label: "#PCSM Prostate",
+					fillColor : "rgba(151,187,205,0.2)",
+					strokeColor : "rgba(151,187,205,1)",
+					pointColor : "rgba(151,187,205,1)",
+					pointStrokeColor : "#fff",
+					pointHighlightFill : "#fff",
+					pointHighlightStroke : "rgba(151,187,205,1)", //Blue
+					data : [{{pcsm_hoursCount_0}},{{pcsm_hoursCount_1}},{{pcsm_hoursCount_2}},{{pcsm_hoursCount_3}},{{pcsm_hoursCount_4}},{{pcsm_hoursCount_5}},{{pcsm_hoursCount_6}},{{pcsm_hoursCount_7}},{{pcsm_hoursCount_8}},{{pcsm_hoursCount_9}},{{pcsm_hoursCount_10}},{{pcsm_hoursCount_11}},{{pcsm_hoursCount_12}},{{pcsm_hoursCount_13}},{{pcsm_hoursCount_14}},{{pcsm_hoursCount_15}},{{pcsm_hoursCount_16}},{{pcsm_hoursCount_17}},{{pcsm_hoursCount_18}},{{pcsm_hoursCount_19}},{{pcsm_hoursCount_20}},{{pcsm_hoursCount_21}},{{pcsm_hoursCount_22}},{{pcsm_hoursCount_23}}]
+				},
+				{
+					label: "#BLCSM Blader",
+					fillColor : "rgba(161,212,144,0.2)",
+					strokeColor : "rgba(161,212,144,1)",
+					pointColor : "rgba(161,212,144,1)",
+					pointStrokeColor : "#fff",
+					pointHighlightFill : "#fff",
+					pointHighlightStroke : "rgba(161,212,144,1)",
+					data : [{{blcsm_hoursCount_0}},{{blcsm_hoursCount_1}},{{blcsm_hoursCount_2}},{{blcsm_hoursCount_3}},{{blcsm_hoursCount_4}},{{blcsm_hoursCount_5}},{{blcsm_hoursCount_6}},{{blcsm_hoursCount_7}},{{blcsm_hoursCount_8}},{{blcsm_hoursCount_9}},{{blcsm_hoursCount_10}},{{blcsm_hoursCount_11}},{{blcsm_hoursCount_12}},{{blcsm_hoursCount_13}},{{blcsm_hoursCount_14}},{{blcsm_hoursCount_15}},{{blcsm_hoursCount_16}},{{blcsm_hoursCount_17}},{{blcsm_hoursCount_18}},{{blcsm_hoursCount_19}},{{blcsm_hoursCount_20}},{{blcsm_hoursCount_21}},{{blcsm_hoursCount_22}},{{blcsm_hoursCount_23}}]
+				},
+				{
+					label: "#LCSM Lung",
+					fillColor : "rgba(242,111,68,0.2)",
+					strokeColor : "rgba(242,111,68,1)",
+					pointColor : "rgba(242,111,68,1)",
+					pointStrokeColor : "#fff",
+					pointHighlightFill : "#fff",
+					pointHighlightStroke : "rgba(242,111,68,1)",
+					data : [{{lcsm_hoursCount_0}},{{lcsm_hoursCount_1}},{{lcsm_hoursCount_2}},{{lcsm_hoursCount_3}},{{lcsm_hoursCount_4}},{{lcsm_hoursCount_5}},{{lcsm_hoursCount_6}},{{lcsm_hoursCount_7}},{{lcsm_hoursCount_8}},{{lcsm_hoursCount_9}},{{lcsm_hoursCount_10}},{{lcsm_hoursCount_11}},{{lcsm_hoursCount_12}},{{lcsm_hoursCount_13}},{{lcsm_hoursCount_14}},{{lcsm_hoursCount_15}},{{lcsm_hoursCount_16}},{{lcsm_hoursCount_17}},{{lcsm_hoursCount_18}},{{lcsm_hoursCount_19}},{{lcsm_hoursCount_20}},{{lcsm_hoursCount_21}},{{lcsm_hoursCount_22}},{{lcsm_hoursCount_23}}]
+				}
+			]
+
+		}
+
+		var lineChartData2 = {
+			labels : ["12am","1am","2am","3am","4am","5am","6am","7am","8am","9am","10am","11am","12pm","1pm","2pm","3pm","4pm","5pm","6pm","7pm","8pm","9pm","10pm","11pm"],
+			datasets : [
+				{
+					label: "#BCSM Breast",
+					fillColor : "rgba(220,220,220,0.2)",
+					strokeColor : "rgba(220,220,220,1)",
+					pointColor : "rgba(220,220,220,1)",
+					pointStrokeColor : "#fff",
+					pointHighlightFill : "#fff",
+					pointHighlightStroke : "rgba(220,220,220,1)", //Grey
+					data : [{{bcsm_hoursCount_0}},{{bcsm_hoursCount_1}},{{bcsm_hoursCount_2}},{{bcsm_hoursCount_3}},{{bcsm_hoursCount_4}},{{bcsm_hoursCount_5}},{{bcsm_hoursCount_6}},{{bcsm_hoursCount_7}},{{bcsm_hoursCount_8}},{{bcsm_hoursCount_9}},{{bcsm_hoursCount_10}},{{bcsm_hoursCount_11}},{{bcsm_hoursCount_12}},{{bcsm_hoursCount_13}},{{bcsm_hoursCount_14}},{{bcsm_hoursCount_15}},{{bcsm_hoursCount_16}},{{bcsm_hoursCount_17}},{{bcsm_hoursCount_18}},{{bcsm_hoursCount_19}},{{bcsm_hoursCount_20}},{{bcsm_hoursCount_21}},{{bcsm_hoursCount_22}},{{bcsm_hoursCount_23}}]
+				}
+			]
+
+		}
+
+		var lineChartData3 = {
+			labels : ["12am","1am","2am","3am","4am","5am","6am","7am","8am","9am","10am","11am","12pm","1pm","2pm","3pm","4pm","5pm","6pm","7pm","8pm","9pm","10pm","11pm"],
+			datasets : [
+				{
+					label: "#PCSM Prostate",
+					fillColor : "rgba(151,187,205,0.2)",
+					strokeColor : "rgba(151,187,205,1)",
+					pointColor : "rgba(151,187,205,1)",
+					pointStrokeColor : "#fff",
+					pointHighlightFill : "#fff",
+					pointHighlightStroke : "rgba(151,187,205,1)", //Blue
+					data : [{{pcsm_hoursCount_0}},{{pcsm_hoursCount_1}},{{pcsm_hoursCount_2}},{{pcsm_hoursCount_3}},{{pcsm_hoursCount_4}},{{pcsm_hoursCount_5}},{{pcsm_hoursCount_6}},{{pcsm_hoursCount_7}},{{pcsm_hoursCount_8}},{{pcsm_hoursCount_9}},{{pcsm_hoursCount_10}},{{pcsm_hoursCount_11}},{{pcsm_hoursCount_12}},{{pcsm_hoursCount_13}},{{pcsm_hoursCount_14}},{{pcsm_hoursCount_15}},{{pcsm_hoursCount_16}},{{pcsm_hoursCount_17}},{{pcsm_hoursCount_18}},{{pcsm_hoursCount_19}},{{pcsm_hoursCount_20}},{{pcsm_hoursCount_21}},{{pcsm_hoursCount_22}},{{pcsm_hoursCount_23}}]
+				}
+			]
+
+		}
+
+
+		var lineChartData4 = {
+			labels : ["12am","1am","2am","3am","4am","5am","6am","7am","8am","9am","10am","11am","12pm","1pm","2pm","3pm","4pm","5pm","6pm","7pm","8pm","9pm","10pm","11pm"],
+			datasets : [
+				{
+					label: "#blcsm Blader",
+					fillColor : "rgba(161,212,144,0.2)",
+					strokeColor : "rgba(161,212,144,1)",
+					pointColor : "rgba(161,212,144,1)",
+					pointStrokeColor : "#fff",
+					pointHighlightFill : "#fff",
+					pointHighlightStroke : "rgba(161,212,144,1)",
+					data : [{{blcsm_hoursCount_0}},{{blcsm_hoursCount_1}},{{blcsm_hoursCount_2}},{{blcsm_hoursCount_3}},{{blcsm_hoursCount_4}},{{blcsm_hoursCount_5}},{{blcsm_hoursCount_6}},{{blcsm_hoursCount_7}},{{blcsm_hoursCount_8}},{{blcsm_hoursCount_9}},{{blcsm_hoursCount_10}},{{blcsm_hoursCount_11}},{{blcsm_hoursCount_12}},{{blcsm_hoursCount_13}},{{blcsm_hoursCount_14}},{{blcsm_hoursCount_15}},{{blcsm_hoursCount_16}},{{blcsm_hoursCount_17}},{{blcsm_hoursCount_18}},{{blcsm_hoursCount_19}},{{blcsm_hoursCount_20}},{{blcsm_hoursCount_21}},{{blcsm_hoursCount_22}},{{blcsm_hoursCount_23}}]
+				}
+			]
+
+		}
+
+		var lineChartData5 = {
+			labels : ["12am","1am","2am","3am","4am","5am","6am","7am","8am","9am","10am","11am","12pm","1pm","2pm","3pm","4pm","5pm","6pm","7pm","8pm","9pm","10pm","11pm"],
+			datasets : [
+				{
+					label: "#lcsm Lung",
+					fillColor : "rgba(242,111,68,0.2)",
+					strokeColor : "rgba(242,111,68,1)",
+					pointColor : "rgba(242,111,68,1)",
+					pointStrokeColor : "#fff",
+					pointHighlightFill : "#fff",
+					pointHighlightStroke : "rgba(242,111,68,1)",
+					data : [{{lcsm_hoursCount_0}},{{lcsm_hoursCount_1}},{{lcsm_hoursCount_2}},{{lcsm_hoursCount_3}},{{lcsm_hoursCount_4}},{{lcsm_hoursCount_5}},{{lcsm_hoursCount_6}},{{lcsm_hoursCount_7}},{{lcsm_hoursCount_8}},{{lcsm_hoursCount_9}},{{lcsm_hoursCount_10}},{{lcsm_hoursCount_11}},{{lcsm_hoursCount_12}},{{lcsm_hoursCount_13}},{{lcsm_hoursCount_14}},{{lcsm_hoursCount_15}},{{lcsm_hoursCount_16}},{{lcsm_hoursCount_17}},{{lcsm_hoursCount_18}},{{lcsm_hoursCount_19}},{{lcsm_hoursCount_20}},{{lcsm_hoursCount_21}},{{lcsm_hoursCount_22}},{{lcsm_hoursCount_23}}]
+				}
+			]
+
+		}
+
+	window.onload = function(){
+		var ctx = document.getElementById("canvas").getContext("2d");
+		window.myLine = new Chart(ctx).Line(lineChartData, {
+			responsive: true
+		});
+		var ctx2 = document.getElementById("canvas2").getContext("2d");
+		window.myLine2 = new Chart(ctx2).Line(lineChartData2, {
+			responsive: true
+		});
+		var ctx3 = document.getElementById("canvas3").getContext("2d");
+		window.myLine3 = new Chart(ctx3).Line(lineChartData3, {
+			responsive: true
+		});
+		var ctx4 = document.getElementById("canvas4").getContext("2d");
+		window.myLine4 = new Chart(ctx4).Line(lineChartData4, {
+			responsive: true
+		});
+		var ctx5 = document.getElementById("canvas5").getContext("2d");
+		window.myLine5 = new Chart(ctx5).Line(lineChartData5, {
+			responsive: true
+		});
+	}
+
+
+	</script>
+	
+
+{% endblock %}
