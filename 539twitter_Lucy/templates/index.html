@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Cancer Tweets</title>
+
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<link rel="stylesheet" type="text/css" href="../static/bootstrap/css/bootstrap.css">
+<link rel="stylesheet" href="../static/style.css">
+<link rel="icon" href="favicon.gif" type="image/gif" sizes="16x16">
+
+<script>
+
+// variable for cancer clicked
+var whichCancer
+
+function resetViz() {
+  document.getElementById('vizchange').innerHTML="<p>Please select a visualization on top.</p>";
+  document.getElementById('tweets').innerHTML="<p>Please select a visualization on top.</p>";
+  document.getElementById('listbcsm').className="inactive";
+  document.getElementById('listblcsm').className="inactive";
+  document.getElementById('listpcsm').className="inactive";
+  document.getElementById('listlcsm').className="inactive";
+  document.getElementById('listall').className="inactive";
+  document.getElementById('weekButton').className="inactive";
+  document.getElementById('donutButton').className="inactive";
+}
+
+function buttonActive(v3) {
+  if (v3 == "week") {
+  document.getElementById('weekButton').className="active";
+  document.getElementById('donutButton').className="inactive";
+}
+  else if (v3 == "donut") {
+  document.getElementById('weekButton').className="inactive";
+  document.getElementById('donutButton').className="active";
+  }
+}
+
+function selectCancer(v1) {
+  whichCancer = v1;
+  resetViz();
+  if (v1 == "bcsm") {
+    document.getElementById('listbcsm').className="active";
+    document.getElementById('tweets').innerHTML=document.getElementById('bcsmTweets').innerHTML;
+  }
+  if (v1 == "blcsm") {
+    document.getElementById('listblcsm').className="active";
+    document.getElementById('tweets').innerHTML=document.getElementById('blcsmTweets').innerHTML;
+  }
+  if (v1 == "pcsm") {
+    document.getElementById('listpcsm').className="active";
+    document.getElementById('tweets').innerHTML=document.getElementById('pcsmTweets').innerHTML;
+  }
+  if (v1 == "lcsm") {
+    document.getElementById('listlcsm').className="active";
+    document.getElementById('tweets').innerHTML=document.getElementById('lcsmTweets').innerHTML;
+  }
+
+  if (v1 == "allHashtags") {
+      document.getElementById('listall').className="active";
+      document.getElementById('tweets').innerHTML=document.getElementById('allTweets').innerHTML;
+  }
+}
+
+//variable/function for viz clicked
+function displayViz(v2) {
+  buttonActive(v2);
+  if (whichCancer == "bcsm") {
+    // document.getElementById('bcsmDiv').style.visibility ="visible"
+    if (v2 == "week") {
+    document.getElementById('vizchange').innerHTML=document.getElementById('bcsmDiv').innerHTML;
+    }
+    else if (v2 == "donut") {
+    document.getElementById('vizchange').innerHTML=document.getElementById('bcsmDiv2').innerHTML;
+    }
+
+  }
+  else if (whichCancer == "blcsm") {
+    if (v2 == "week") {
+    document.getElementById('vizchange').innerHTML=document.getElementById('blcsmDiv').innerHTML;
+    }
+    else if (v2 == "donut") {
+    document.getElementById('vizchange').innerHTML=document.getElementById('blcsmDiv2').innerHTML;
+    }
+  }
+  else if (whichCancer == "lcsm") {
+    if (v2 == "week") {
+    document.getElementById('vizchange').innerHTML=document.getElementById('lcsmDiv').innerHTML;
+    }
+    else if (v2 == "donut") {
+    document.getElementById('vizchange').innerHTML=document.getElementById('lcsmDiv2').innerHTML;
+    }
+  }
+  else if (whichCancer == "pcsm") {
+    if (v2 == "week") {
+    document.getElementById('vizchange').innerHTML=document.getElementById('pcsmDiv').innerHTML;
+    }
+    else if (v2 == "donut") {
+    document.getElementById('vizchange').innerHTML=document.getElementById('pcsmDiv2').innerHTML;
+    }
+  }
+  else if (whichCancer == "allHashtags") {
+    if (v2 == "week") {
+    document.getElementById('vizchange').innerHTML=document.getElementById('allHashtagsDiv1').innerHTML;
+    }
+    else if (v2 == "donut") {
+    document.getElementById('vizchange').innerHTML=document.getElementById('allHashtagsDiv2').innerHTML;
+    }
+  }
+  else
+  {    document.getElementById('vizchange').innerHTML=document.getElementById('noHashtag').innerHTML; }
+
+}
+
+</script>
+
+</head>
+
+<body>
+
+<!--top nav-->
+  <nav class="navbar navbar-default">
+    <div class="container-fluid">
+      <div>
+        <ul class="nav navbar-nav pull-right">
+          <li><a href="#"">Home</a></li>
+          <li><a href="#">About</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+
+<!--jumbotron-->
+<div class="jumbotron parallax-window" data-parallax="scroll" data-image-src="../static/img/sky.jpg">
+  <div class="container-fluid">
+  <h1>Cancer Tweets</h1>
+  <p>Tweets over the past 24 hours</p>
+  </div>
+</div>
+
+<section class="mainrow">
+
+  <!-- sidebar http://www.bootply.com/render/96266-->
+  <div class="column col-sm-2 col-xs-1 sidebar-offcanvas" id="sidebar">
+
+      <ul class="nav">
+      <li><a href="#" data-toggle="offcanvas" class="visible-xs text-center"><i class="glyphicon glyphicon-chevron-right"></i></a></li>
+    </ul>
+
+      <ul class="nav hidden-xs" id="lg-menu">
+          <h3>Hashtags</h3>
+          <li id=listbcsm><a onclick="selectCancer('bcsm')"><i class="glyphicon glyphicon-heart"></i> Breast Cancer</a></li>
+          <li id=listpcsm><a onclick="selectCancer('pcsm')"><i class="glyphicon glyphicon-tree-deciduous"></i> Prostate Cancer</a></li>
+          <li id=listlcsm><a onclick="selectCancer('lcsm')"><i class="glyphicon glyphicon-leaf"></i> Lung Cancer</a></li>
+          <li id=listblcsm><a onclick="selectCancer('blcsm')"><i class="glyphicon glyphicon-tint"></i> Bladder Cancer</a></li>
+          <li id=listall><a onclick="selectCancer('allHashtags')"><i class="glyphicon glyphicon-list-alt"></i> All</a></li>
+          <!-- <li><a href="#"><i class="glyphicon glyphicon-refresh"></i> Refresh</a></li> -->
+      </ul>
+
+
+      <!-- tiny only nav-->
+    <ul class="nav visible-xs" id="xs-menu">
+          <li id=listbcsm class="text-center"><a onclick="selectCancer('bcsm')"><i class="glyphicon glyphicon-heart"></i></a></li>
+          <li id=listbcsm class="text-center"><a onclick="selectCancer('pcsm')"><i class="glyphicon glyphicon-tree-deciduous"></i></a></li>
+          <li id=listbcsm class="text-center"><a onclick="selectCancer('lcsm')"><i class="glyphicon glyphicon-leaf"></i></a></li>
+          <li id=listbcsm class="text-center"><a onclick="selectCancer('blcsm')"><i class="glyphicon glyphicon-tint"></i></a></li>
+          <li id=listbcsm class="text-center"><a onclick="selectCancer('allHashtags')"><i class="glyphicon glyphicon-list-alt"></i></a></li>
+      </ul>
+
+  </div>
+  <!-- /sidebar -->
+
+<!-- viz nav -->
+<!-- <div class= "column col-sm-10 col-xs-11">
+<div class="container" id="vizNav">
+  <ul class="nav nav-pills nav-justified">
+    <li><a href="#">Over last week</a></li>
+    <li><a href="#">Compared to total</a></li>
+  </ul>
+</div> -->
+
+<div class= "column col-sm-10 col-xs-11" id="rightDiv">
+<div class="container" id="vizNav">
+  <ul class="nav nav-pills nav-justified">
+    <!-- <li onclick="document.getElementById('vizchange').innerHTML=document.getElementById('Viz1').innerHTML;"><a href="#1">Over last week</a></li>
+    <li onclick="document.getElementById('vizchange').innerHTML=document.getElementById('Viz2').innerHTML;"><a href="#2">Compared to total</a></li> -->
+    <li id="weekButton" onclick="displayViz('week')"><a>Last 24 hours</a></li>
+    <li id="donutButton" onclick="displayViz('donut')"><a>Compared to total</a></li>
+  </ul>
+</div>
+
+<!-- Add visualizations here -->
+  <div class="vizdata" id="vizchange"></div>
+    <div id="bcsmDiv" style="visibility: hidden;">
+      <p>bcsm</p>
+    </div>
+
+    <div id="bcsmDiv2" style="visibility: hidden;">
+      <p>bcsm2</p>
+    </div>
+
+    <div id="blcsmDiv" style="visibility:hidden;">
+      <p>blcsm</p>
+    </div>
+    <div id="blcsmDiv2" style="visibility:hidden;">
+      <p>blcsm2</p>
+    </div>
+
+    <div id="lcsmDiv" style="visibility:hidden;">
+      <p>lcsm</p>
+    </div>
+    <div id="lcsmDiv2" style="visibility:hidden;">
+      <p>lcsm2</p>
+    </div>
+
+    <div id="pcsmDiv" style="visibility:hidden;">
+      <p>pcsm</p>
+    </div>
+    <div id="pcsmDiv2" style="visibility:hidden;">
+      <p>pcsm2</p>
+    </div>
+
+    <div id="noHashtag" style="visibility:hidden;">
+      <p>Please select a hashtag on the left.</p>
+    </div>
+
+    <div id="allHashtagsDiv1" style="visibility:hidden;">
+      <p>all hashtags 1 viz</p>
+    </div>
+
+    <div id="allHashtagsDiv2" style="visibility:hidden;">
+      <p>all hashtags 2 viz</p>
+    </div>
+</div>
+
+</div>
+</section>
+
+<!-- /viznav -->
+
+
+
+<!-- tweets section -->
+<section class="mainrow">
+
+  <!-- sidebar http://www.bootply.com/render/96266-->
+  <div class="column col-sm-2 col-xs-1 sidebar-offcanvas" id="sidebar">
+
+      <ul class="nav">
+      <li><a href="#" data-toggle="offcanvas" class="visible-xs text-center"><i class="glyphicon glyphicon-chevron-right"></i></a></li>
+    </ul>
+
+      <ul class="nav hidden-xs" id="lg-menu">
+        <h3>Tweets</h3>
+      </ul>
+
+
+  </div>
+  <!-- /sidebar -->
+
+<!-- tweets box -->
+<div class= "column col-sm-10 col-xs-11" id="rightDiv">
+<!-- <div class="container" id="vizNav"></div> -->
+
+<!--  add tweets here-->
+<div class="vizdata" id="tweets"></div></div>
+
+<div id="bcsmTweets" style="visibility: hidden;">
+  <p>bcsm Tweets here</p>
+</div>
+
+
+<div id="blcsmTweets" style="visibility:hidden;">
+  <p>blcsm Tweets here</p>
+</div>
+
+
+<div id="lcsmTweets" style="visibility:hidden;">
+  <p>lcsm</p>
+</div>
+
+
+<div id="pcsmTweets" style="visibility:hidden;">
+  <p>pcsm</p>
+</div>
+
+<div id="noHashtag" style="visibility:hidden;">
+  <p>Please select a hashtag on the left.</p>
+</div>
+
+<div id="allTweets" style="visibility:hidden;">
+  <p>All tweets</p>
+</div>
+
+</section>
+
+
+<div class="jumbotron parallax-window" id="lowerJumbo" data-parallax="scroll" data-image-src="../static/img/sky2.jpg">
+  <div class="container-fluid">
+  <p>Resources</p>
+  </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+     <script src="../static/bootstrap/js/bootstrap.min.js"></script>
+     <script src="../static/js/parallax.js"></script>
+
+<style>
+/*http://bootsnipp.com/snippets/KrdmQ*/
+/*$(window).resize(function() {
+	var path = $(this);
+	var contW = path.width();
+	if(contW >= 751){
+		document.getElementsByClassName("sidebar-toggle")[0].style.left="200px";
+	}else{
+		document.getElementsByClassName("sidebar-toggle")[0].style.left="-200px";
+	}
+});
+$(document).ready(function() {
+	$('.dropdown').on('show.bs.dropdown', function(e){
+	    $(this).find('.dropdown-menu').first().stop(true, true).slideDown(300);
+	});
+	$('.dropdown').on('hide.bs.dropdown', function(e){
+		$(this).find('.dropdown-menu').first().stop(true, true).slideUp(300);
+	});
+	$("#menu-toggle").click(function(e) {
+		e.preventDefault();
+		var elem = document.getElementById("sidebar-wrapper");
+		left = window.getComputedStyle(elem,null).getPropertyValue("left");
+		if(left == "200px"){
+			document.getElementsByClassName("sidebar-toggle")[0].style.left="-200px";
+		}
+		else if(left == "-200px"){
+			document.getElementsByClassName("sidebar-toggle")[0].style.left="200px";
+		}
+	});
+});*/
+
+</style>
+<script>
+$(document).ready(function(){/* off-canvas sidebar toggle */
+
+$('[data-toggle=offcanvas]').click(function() {
+  	$(this).toggleClass('visible-xs text-center');
+    $(this).find('i').toggleClass('glyphicon-chevron-right glyphicon-chevron-left');
+    $('.row-offcanvas').toggleClass('active');
+    $('#lg-menu').toggleClass('hidden-xs').toggleClass('visible-xs');
+    $('#xs-menu').toggleClass('visible-xs').toggleClass('hidden-xs');
+    $('#btnShow').toggle();
+});
+});
+
+</script>
+
+</body>
+</html>

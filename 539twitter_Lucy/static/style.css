@@ -1,0 +1,114 @@
+ul.nav > li > a:hover  {
+	border-style: dashed;
+  border-width: thin;
+  border-color: #A4DADB;
+}
+
+
+.navbar-default {
+    background-color: white;
+    border-color: #E7E7E7;
+		color: white;
+		margin-bottom: 0px;
+}
+
+#rightDiv {
+	float: right;
+}
+.inactive {
+  background-color: white;
+}
+
+.active {
+	/*background-color: #A4DADB;*/
+	background-color: #f1f2f4;
+	color: white;
+	border-style: none;
+}
+
+.container-fluid {
+  padding-left: 30px;
+  padding-right: 30px;
+}
+
+.mainrow {
+  margin: 20px;
+  min-height: 900px;
+}
+
+h3 {
+  color: #gray;
+}
+/*.navbar.navbar-default {
+  margin-bottom: 0px;
+	color: white;
+}*/
+
+/*.jumbotron {
+  min-height: 300px;
+	color: white;
+	background-color: #A4DADB;
+}*/
+
+.jumbotron {
+  min-height: 350px;
+	/*color: #01506B;*/
+	color: black;
+	background: transparent;
+	padding-top: 5px;
+
+}
+
+#lowerJumbo {
+	min-height: 100px;
+	background: transparent;
+}
+
+.middle {
+  min-height: 800px;
+}
+
+#sidebar {
+    margin-top: 25px;
+		position: fixed;
+}
+
+/*.viz {
+  max-width: 80%;
+  min-height: 800px;
+  display: inline-block;
+  float: right;
+  position: relative;
+  margin: 20px;
+  margin-top: 0px;
+  margin-right: 20px;
+}*/
+
+
+
+#vizNav {
+  max-width: 30%;
+  margin-bottom: 20px;
+}
+
+a {
+  color: gray;
+}
+
+
+.vizdata {
+  position: absolute;
+  margin: -10px;
+  padding: 10px;
+  border-size: 2px;
+  border-style: solid;
+  /*border-color: #A4DADB;*/
+	border-color: #f1f2f4;
+  min-height: 800px;
+  min-width: 100%;
+}
+
+.col-xs-2 {
+  padding-left: 0px;
+}
+/*side-bar http://bootsnipp.com/snippets/KrdmQ*/
